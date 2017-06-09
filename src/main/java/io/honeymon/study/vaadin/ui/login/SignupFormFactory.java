@@ -4,8 +4,9 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import io.honeymon.study.vaadin.domain.Partner;
 import io.honeymon.study.vaadin.service.PartnerService;
-import io.honeymon.study.vaadin.ui.CommonComponent;
 import io.honeymon.study.vaadin.ui.MainUI;
+import io.honeymon.study.vaadin.ui.common.BaseComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponentFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +23,7 @@ import static org.springframework.util.StringUtils.hasText;
  * Created by jake on 05/05/2017.
  */
 @org.springframework.stereotype.Component
-public class SignupFormFactory {
+public class SignupFormFactory implements BaseComponentFactory {
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -31,7 +32,12 @@ public class SignupFormFactory {
     @Autowired
     AuthenticationProvider authenticationProvider;
 
-    private class SignupForm implements CommonComponent<SignupForm> {
+    @Override
+    public Component createComponent() {
+        return new SignupForm().init().layout();
+    }
+
+    private class SignupForm implements BaseComponent<SignupForm> {
         private VerticalLayout root;
         private FormLayout signupForm;
         private TextField email;
@@ -105,7 +111,7 @@ public class SignupFormFactory {
                         return;
                     }
 
-                    if(!password.getValue().equals(confirmPassword.getValue())) {
+                    if (!password.getValue().equals(confirmPassword.getValue())) {
                         Notification.show("Error!", "Password not matched.", Notification.Type.ERROR_MESSAGE);
                         return;
                     }
@@ -123,9 +129,5 @@ public class SignupFormFactory {
 
             return root;
         }
-    }
-
-    public Component createComponent() {
-        return new SignupForm().init().layout();
     }
 }

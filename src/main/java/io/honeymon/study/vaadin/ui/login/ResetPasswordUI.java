@@ -6,6 +6,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
+import io.honeymon.study.vaadin.ui.common.GenericUI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,15 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Title("Partner reset of account")
 @Theme(ValoTheme.THEME_NAME)
 @SpringUI(path = ResetPasswordUI.PATH)
-public class ResetPasswordUI extends UI {
+public class ResetPasswordUI extends GenericUI<ResetPasswordFactory> {
     public static final String PATH = "/reset-password";
-
-    @Autowired
-    ResetPasswordFactory resetpasswordFactory;
-
-    @Override
-    protected void init(VaadinRequest request) {
-        log.info("Reset password[IP: {}]", request.getRemoteAddr());
-        setContent(resetpasswordFactory.createComponent());
-    }
 }

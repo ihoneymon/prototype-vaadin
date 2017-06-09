@@ -3,7 +3,8 @@ package io.honeymon.study.vaadin.ui.login;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import io.honeymon.study.vaadin.service.PartnerService;
-import io.honeymon.study.vaadin.ui.CommonComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponentFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,11 +15,16 @@ import static org.springframework.util.StringUtils.hasText;
  */
 @Slf4j
 @org.springframework.stereotype.Component
-public class ResetPasswordFactory {
+public class ResetPasswordFactory implements BaseComponentFactory {
     @Autowired
     PartnerService partnerService;
 
-    private class ResetPasswordForm implements CommonComponent<ResetPasswordForm> {
+    @Override
+    public Component createComponent() {
+        return new ResetPasswordForm().init().layout();
+    }
+
+    private class ResetPasswordForm implements BaseComponent<ResetPasswordForm> {
         private HorizontalLayout root;
         private FormLayout resetPasswordForm;
         private Label formLabel;
@@ -73,7 +79,5 @@ public class ResetPasswordFactory {
         }
     }
 
-    public Component createComponent() {
-        return new ResetPasswordForm().init().layout();
-    }
+
 }

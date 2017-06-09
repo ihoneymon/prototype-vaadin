@@ -3,7 +3,8 @@ package io.honeymon.study.vaadin.ui.login;
 import com.vaadin.server.ClassResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import io.honeymon.study.vaadin.ui.CommonComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponentFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -19,18 +20,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 @Slf4j
 @org.springframework.stereotype.Component
-public class LoginFormFactory {
+public class LoginFormFactory implements BaseComponentFactory {
 
     @Autowired
     MessageSource messageSource;
     @Autowired
     AuthenticationProvider authenticationProvider;
 
+    @Override
     public Component createComponent() {
         return new LoginForm().init().layout();
     }
 
-    private class LoginForm implements CommonComponent<LoginForm> {
+    private class LoginForm implements BaseComponent<LoginForm> {
         private HorizontalLayout root;
         private VerticalLayout leftBodyLayout;
         private VerticalLayout rightBodyLayout;

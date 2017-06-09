@@ -6,6 +6,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
+import io.honeymon.study.vaadin.ui.common.GenericUI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,13 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Title("Main page of WB Partner System")
 @SpringUI(path = MainUI.PATH)
 @Theme(ValoTheme.THEME_NAME)
-public class MainUI extends UI{
+public class MainUI extends GenericUI<MainComponentFactory> {
     public static final String PATH = "/";
-
-    @Autowired
-    MainComponentFactory mainComponentFactory;
-    @Override
-    protected void init(VaadinRequest request) {
-        setContent(mainComponentFactory.createComponent());
-    }
 }

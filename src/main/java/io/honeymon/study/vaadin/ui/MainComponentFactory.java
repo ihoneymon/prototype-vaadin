@@ -2,6 +2,8 @@ package io.honeymon.study.vaadin.ui;
 
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import io.honeymon.study.vaadin.ui.common.BaseComponent;
+import io.honeymon.study.vaadin.ui.common.BaseComponentFactory;
 import io.honeymon.study.vaadin.ui.login.LoginUI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,14 +13,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 @Slf4j
 @org.springframework.stereotype.Component
-public class MainComponentFactory {
+public class MainComponentFactory implements BaseComponentFactory {
 
-    private class MainComponent {
+    @Override
+    public Component createComponent() {
+        return new MainComponent().init().layout();
+    }
+
+    private class MainComponent implements BaseComponent<MainComponent> {
         private VerticalLayout root;
         private Label label;
         private Button logoutBtn;
 
-
+        @Override
         public MainComponent init() {
             //TODO 화면구성
             root = new VerticalLayout();
@@ -31,6 +38,7 @@ public class MainComponentFactory {
             return this;
         }
 
+        @Override
         public Component layout() {
             root.addComponent(label);
             root.addComponent(logoutBtn);
@@ -42,9 +50,5 @@ public class MainComponentFactory {
             });
             return root;
         }
-    }
-
-    public Component createComponent() {
-        return new MainComponent().init().layout();
     }
 }
