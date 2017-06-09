@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Created by jake on 04/05/2017.
+ * Created by honeymon on 04/05/2017.
  */
 @Slf4j
-@Title("Main page of WB Partner System")
+@Title("Main page of Honeymon System")
 @SpringUI(path = MainUI.PATH)
 @Theme(ValoTheme.THEME_NAME)
 public class MainUI extends GenericUI<MainComponentFactory> {

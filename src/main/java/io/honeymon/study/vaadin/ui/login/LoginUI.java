@@ -13,7 +13,7 @@ import org.springframework.context.MessageSource;
 /**
  * Created by jake on 04/05/2017.
  */
-@Title("Login page of WB Partner System")
+@Title("Login page of Honeymon System")
 @Theme(ValoTheme.THEME_NAME)
 @SpringUI(path = LoginUI.PATH)
 public class LoginUI extends GenericUI<LoginFormFactory> {

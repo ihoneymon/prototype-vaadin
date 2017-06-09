@@ -3,6 +3,7 @@ package io.honeymon.study.vaadin.ui.login;
 import com.vaadin.server.ClassResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import io.honeymon.study.vaadin.ui.MainUI;
 import io.honeymon.study.vaadin.ui.common.BaseComponent;
 import io.honeymon.study.vaadin.ui.common.BaseComponentFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -117,7 +118,8 @@ public class LoginFormFactory implements BaseComponentFactory {
                 try {
                     Authentication auth = new UsernamePasswordAuthenticationToken(username.getValue(), password.getValue());
                     SecurityContextHolder.getContext().setAuthentication(authenticationProvider.authenticate(auth));
-
+                    //TODO 로그인 완료 후
+                    UI.getCurrent().getPage().setLocation(MainUI.PATH);
                 } catch (AuthenticationException ae) {
                     log.error("Occur Exception: {}", ae.toString());
                     Notification.show("Error!", ae.getMessage(), Notification.Type.ERROR_MESSAGE);

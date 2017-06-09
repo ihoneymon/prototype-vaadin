@@ -1,18 +1,9 @@
-buildscript {
-    ext {
-        springBootVersion = '1.5.3.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+plugins {
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+    id 'java'
+    id 'eclipse'
+    id 'idea'
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -32,6 +23,8 @@ dependencies {
 //    compile("com.byteowls:vaadin-chartjs:0.4.0")    // https://github.com/moberwasserlechner/vaadin-chartjs
     compile('org.projectlombok:lombok:1.16.16')
     compile('com.h2database:h2')
+
+    runtime("org.springframework.boot:spring-boot-devtools")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

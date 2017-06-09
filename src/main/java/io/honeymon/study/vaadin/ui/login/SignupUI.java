@@ -7,9 +7,9 @@ import com.vaadin.ui.themes.ValoTheme;
 import io.honeymon.study.vaadin.ui.common.GenericUI;
 
 /**
- * Created by jake on 05/05/2017.
+ * Created by honeymon on 05/05/2017.
  */
-@Title("Login page of WB Partner System")
+@Title("Login page of Honeymon System")
 @Theme(ValoTheme.THEME_NAME)
 @SpringUI(path = SignupUI.PATH)
 public class SignupUI extends GenericUI<SignupFormFactory> {
